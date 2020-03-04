@@ -41,6 +41,7 @@ noun_phrases(NP)                    --> noun_phrase(NP).
 noun_phrases(nps(NP, C, NPS))       --> noun_phrase(NP), conj(C), noun_phrases(NPS).
 
 noun_phrase(np(N))                  --> noun(N).
+noun_phrase(np(PR))                 --> pronoun(PR).
 noun_phrase(np(D, N))               --> det(D), noun(N).
 noun_phrase(np(AS, N))              --> adjs(AS), noun(N).
 noun_phrase(np(D, AS, N))           --> det(D), adjs(AS), noun(N).
@@ -310,6 +311,8 @@ clear   :- cls.
 cls     :- write('\e[H\e[2J').
 
 
+%%%%%%%%%%%%%%%%%%%%%%% Test Cases %%%%%%%%%%%%%%%%%%%%%%%
+/*
 % | ?- s(PT, [the,bat,ate,a,cat], []).
 % PT = s(np(d(the), n(bat)), vp(v(ate), obj(d(a), n(cat))))
 %                       s
@@ -325,10 +328,48 @@ cls     :- write('\e[H\e[2J').
 %                              d      n
 %                              |      |
 %                              a     cat
-
+*/
 /*
 a) The/ young/ boy/ who/ worked/ for/ the/ old/ man/ pushed/ and/ stored/ a/ big/ box/ in/ the/ large/ empty/ room/ after/ school/. ✓
+| ?- s(PT, [the,young,boy,who,worked,for,the,old,man,pushed,and,stored,a,big,box,in,the,large,empty,room,after,school], []).
+PT = s(np(d(the), aj(young), n(boy), rpn(who), vp(v(worked), prepp(prep(for), obj(d(the), aj(old), n(man))))), vps(vp(v(pushed)), cnj(and), vp(v(stored), obj(d(a), aj(big), n(box)), preposes(prepp(prep(in), obj(d(the), ajs(aj(large), aj(empty)), n(room))), prepp(prep(after), obj(n(school)))))))
+
+                                                    s
+                                                  /   \
+                                                /       \
+                                              /           \
+                                            /               \
+                                        np                  vps
+                                        |                    |
+----------------------------------------                   / | \
+|       |       |       |       |                         /  |  \
+d       aj      n      rpn     vp                       vp  cnj  vp
+|       |       |       |       |                       /    |     \
+the   young    boy     who    /   \                    v    and     ----------------
+                             /     \                   |            |       |       |
+                            v       prepp            pushed         v      obj      preposes
+                            |         /   \                        /      / | \         |
+                        worked      prep   obj                  stored   /  |  \        ----------------
+                                    |       |                           d   aj  n       |               |
+                                   for    / | \                         |   |   |      prepp           prepp
+                                         /  |  \                        a  big  box   /     \            ------------
+                                        d   aj  n                                    /       \           |          |
+                                        |   |   |                                  prep      obj        prep       obj
+                                      the  old  man                                 |      /  |  \       |          |
+                                                                                    in    d  ajs  n     after       n
+                                                                                         /   / \   \                |
+                                                                                       the  aj aj   room          school
+                                                                                           /    \
+                                                                                        large   empty
+*/
+
+/*
 b) The/ old/ woman/ and/ the/ old/ man/ gave/ the/ poor/ young/ man/ whom/ they/ liked/ a/ white/ envelope/ in/ the/ shed/ behind/ the/ building/. ✓
 c) Every/ boy/ quickly/ climbed/ some/ big/ tree/ while/ every/ girl/ secretly/ watched/ some/ boy/. ✓
 d) Some/ brilliant/ students/ and/ many/ professors/ watched/ and/ admired/ talented/ lecturers/ and/ appreciated/ bright/ scientists/ and/ researchers/. ✓
+*/
+/*
+| ?- s(PT, [the,old,woman,and,the,old,man,gave,the,poor,young,man,whom,they,liked,a,white,envelope,in,the,shed,behind,the,building], []).
+| ?- s(PT, [every,boy,quickly,climbed,some,big,tree,while,every,girl,secretly,watched,some,boy], []).
+| ?- s(PT, [some,brilliant,students,and,many,professors,watched,and,admired,talented,lecturers,and,appreciated,bright,scientists,and,researchers], []).
 */
