@@ -210,7 +210,7 @@ adv(av(gently))     --> [gently].
 adv(av(calmly))     --> [calmly].
 adv(av(quietly))    --> [quietly].
 adv(av(quickly))    --> [quickly].
-adv(av(secretly))   --> [secretly].
+adv(av(happily))    --> [happily].
 adv(av(secretly))   --> [secretly].
 adv(av(silently))   --> [silently].
 adv(av(painfully))  --> [painfully].
@@ -345,6 +345,9 @@ d) Some/ brilliant/ students/ and/ many/ professors/ watched/ and/ admired/ tale
 */
 /*
 | ?- s(PT, [the,old,woman,and,the,old,man,gave,the,poor,young,man,whom,they,liked,a,white,envelope,in,the,shed,behind,the,building], []).
+PT = s(nps(np(d(the), aj(old), n(woman)), cnj(and), np(d(the), aj(old), n(man))), vp(v(gave), obj(d(the), ajs(aj(poor), aj(young)), n(man), rpn(whom), s(np(pr(they)), vp(v(liked)))), obj(d(a), aj(white), n(envelope)), preposes(prepp(prep(in), obj(d(the), n(shed))), prepp(prep(behind), obj(d(the), n(building))))))
 | ?- s(PT, [every,boy,quickly,climbed,some,big,tree,while,every,girl,secretly,watched,some,boy], []).
+PT = ss(s(np(d(every), n(boy)), vp(av(quickly), v(climbed), obj(d(some), aj(big), n(tree)))), cnj(while), s(np(d(every), n(girl)), vp(av(secretly), v(watched), obj(d(some), n(boy)))))
 | ?- s(PT, [some,brilliant,students,and,many,professors,watched,and,admired,talented,lecturers,and,appreciated,bright,scientists,and,researchers], []).
+PT = s(nps(np(d(some), aj(brilliant), n(students)), cnj(and), np(d(many), n(professors))), vps(vp(v(watched)), cnj(and), vps(vp(v(admired), obj(aj(talented), n(lecturers))), cnj(and), vp(v(appreciated), objs(obj(aj(bright), n(scientists)), cnj(and), obj(n(researchers)))))))
 */
