@@ -258,37 +258,12 @@ det(d(various)) --> [various].
 
 %%%%%%%%%%%%%%%%%%%%%%% Pronouns %%%%%%%%%%%%%%%%%%%%%%%
 pronoun(pr(i))          --> [i].
-pronoun(pr(me))         --> [me].
-pronoun(pr(my))         --> [my].
 pronoun(pr(he))         --> [he].
 pronoun(pr(it))         --> [it].
 pronoun(pr(we))         --> [we].
-pronoun(pr(us))         --> [us].
 pronoun(pr(you))        --> [you].
-pronoun(pr(his))        --> [his].
 pronoun(pr(she))        --> [she].
-pronoun(pr(her))        --> [her].
-pronoun(pr(him))        --> [him].
-pronoun(pr(its))        --> [its].
-pronoun(pr(our))        --> [our].
-pronoun(pr(ours))       --> [ours].
-pronoun(pr(hers))       --> [hers].
-pronoun(pr(them))       --> [them].
-pronoun(pr(mine))       --> [mine].
 pronoun(pr(they))       --> [they].
-pronoun(pr(your))       --> [your].
-pronoun(pr(yours))      --> [yours].
-pronoun(pr(their))      --> [their].
-pronoun(pr(theirs))     --> [theirs].
-pronoun(pr(myself))     --> [myself].
-pronoun(pr(itself))     --> [itself].
-pronoun(pr(herself))    --> [herself].
-pronoun(pr(himself))    --> [himself].
-pronoun(pr(themself))   --> [themself].
-pronoun(pr(yourself))   --> [yourself].
-pronoun(pr(ourselves))  --> [ourselves].
-pronoun(pr(yourselves)) --> [yourselves].
-pronoun(pr(themselves)) --> [themselves].
 
 
 %%%%%%%%%%%%%%%%%%%%%%% Relative Pronouns %%%%%%%%%%%%%%%%%%%%%%%
