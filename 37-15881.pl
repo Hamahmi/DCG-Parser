@@ -32,6 +32,7 @@ s(S) --> sentences(S).
 %%%%%%%%%%%%%%%%%%%%%%% Sentences %%%%%%%%%%%%%%%%%%%%%%%
 sentences(S)            --> sentence(S).
 sentences(ss(S, C, SS)) --> sentence(S), conj(C), sentences(SS).
+sentences(ss(S, C, SS)) --> sentence(S), conjs(C), sentences(SS).
 
 sentence(s(NP,VP))      --> noun_phrases(NP), verb_phrases(VP).
 
@@ -278,7 +279,8 @@ conj(cnj(yet))      --> [yet].
 conj(cnj(but))      --> [but].
 conj(cnj(nor))      --> [nor].
 conj(cnj(and))      --> [and].
-conj(cnj(while))    --> [while].
+% between sentences only
+conjs(cnjs(while))    --> [while].
 
 
 %%%%%%%%%%%%%%%%%%%%%%% Fancy %%%%%%%%%%%%%%%%%%%%%%%
@@ -347,7 +349,36 @@ d) Some/ brilliant/ students/ and/ many/ professors/ watched/ and/ admired/ tale
 | ?- s(PT, [the,old,woman,and,the,old,man,gave,the,poor,young,man,whom,they,liked,a,white,envelope,in,the,shed,behind,the,building], []).
 PT = s(nps(np(d(the), aj(old), n(woman)), cnj(and), np(d(the), aj(old), n(man))), vp(v(gave), obj(d(the), ajs(aj(poor), aj(young)), n(man), rpn(whom), s(np(pr(they)), vp(v(liked)))), obj(d(a), aj(white), n(envelope)), preposes(prepp(prep(in), obj(d(the), n(shed))), prepp(prep(behind), obj(d(the), n(building))))))
 | ?- s(PT, [every,boy,quickly,climbed,some,big,tree,while,every,girl,secretly,watched,some,boy], []).
-PT = ss(s(np(d(every), n(boy)), vp(av(quickly), v(climbed), obj(d(some), aj(big), n(tree)))), cnj(while), s(np(d(every), n(girl)), vp(av(secretly), v(watched), obj(d(some), n(boy)))))
+PT = ss(s(np(d(every), n(boy)), vp(av(quickly), v(climbed), obj(d(some), aj(big), n(tree)))), cnjs(while), s(np(d(every), n(girl)), vp(av(secretly), v(watched), obj(d(some), n(boy)))))
 | ?- s(PT, [some,brilliant,students,and,many,professors,watched,and,admired,talented,lecturers,and,appreciated,bright,scientists,and,researchers], []).
 PT = s(nps(np(d(some), aj(brilliant), n(students)), cnj(and), np(d(many), n(professors))), vps(vp(v(watched)), cnj(and), vps(vp(v(admired), obj(aj(talented), n(lecturers))), cnj(and), vp(v(appreciated), objs(obj(aj(bright), n(scientists)), cnj(and), obj(n(researchers)))))))
+*/
+
+/*
+Incorrect sentences : (Should output false.):
+s(PT, [the,girl], []).                                          ✓
+s(PT, [and,pushed,a,box], []).                                  ✓
+s(PT, [while,pushed,a,box], []).                                ✓
+s(PT, [the,boy,who,stored], []).                                ✓
+s(PT, [pushed,the,boy,a,box], []).                              ✓
+s(PT, [the,girl,pushed,a,box,and], []).                         ✓
+s(PT, [the,boy,young,pushed,a,box], []).                        ✓
+s(PT, [the,boy,whom,stored,the,box], []).                       ✓
+s(PT, [the,girl,the,boy,pushed,a,box], []).                     ✓
+s(PT, [the,boy,pushed,while,stored,a,box], []).                 ✓
+s(PT, [the,poor,quickly,boy,pushed,a,box], []).                 ✓
+s(PT, [the,boy,pushed,a,box,in,in,the,room], []).               ✓
+s(PT, [the,boy,while,the,girl,pushed,a,box], []).               ✓
+s(PT, [the,boy,pushed,a,the,box,in,the,room], []).              ✓
+s(PT, [the,boy,whom,stored,the,tree,watched], []).              ✓
+s(PT, [the,boy,who,they,liked,stored,a,tree], []).              ✓
+s(PT, [the,girl,boy,pushed,a,box,in,the,room], []).             ✓
+s(PT, [who,the,boy,gave,the,girl,stored,a,tree], []).           ✓
+s(PT, [the,boy,gave,the,girl,stored,a,tree,who], []).           ✓
+s(PT, [the,boy,gave,the,who,girl,stored,a,tree], []).           ✓
+s(PT, [the,boy,gave,the,girl,stored,a,who,tree], []).           ✓
+s(PT, [the,boy,pushed,pushed,a,box,in,the,room], []).           ✓
+s(PT, [the,boy,pushed,a,box,the,girl,pushed,a,box], []).        ✓
+s(PT, [the,boy,pushed,the,box,in,the,room,stored,a,tree], []).  ✓
+s(PT, [the,boy,gave,the,girl,a,white,envelope,a,big,tree], []). ✓
 */
